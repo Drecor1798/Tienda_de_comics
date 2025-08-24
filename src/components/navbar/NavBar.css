@@ -1,0 +1,14 @@
+nav{
+    background: #2a979b;
+    background: radial-gradient(circle,rgba(42, 151, 155, 0.46) 0%, rgba(38, 218, 224, 1) 100%, rgba(153, 224, 211, 0.97) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+li{
+    display: inline-block;
+    margin: 10px;
+}
+

@@ -1,12 +1,24 @@
-import "./ItemListContainer.css"
+import { useState, useEffect } from "react"
+import { getProductos, getProductosPorCategoria } from "../../Asycmocks"
+import ItemList from "../ItemList/ItemList"
+import { useParams } from "react-router-dom"
 
 const ItemListContainer = () => {
-    const imgEntrada = "./image/1.png"
+  const [productos , setProductos] = useState([])
+  const {IdCategoria} = useParams()
+
+
+  useEffect(() => {
+    const funcionProductos = IdCategoria ? getProductosPorCategoria : getProductos;
+    funcionProductos(IdCategoria)
+      .then(res => setProductos(res))
+  },[IdCategoria])
+
   return (
-    <div>
-        <img className="imgEntrada" src={imgEntrada} alt="" />
-        <h1>Bienvenido a La tienda de comics</h1>
-    </div>
+    <>
+        <h2 style={{textAlign:"center"}}>Mis productos</h2>
+        <ItemList productos={productos}/>
+    </>
   )
 }
 

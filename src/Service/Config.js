@@ -1,14 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, writeBatch } from "firebase/firestore";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDo4ATvIc96HOTszR_D-OQ174mkUjVMNno",
-    authDomain: "comic-store-dd778.firebaseapp.com",
-    projectId: "comic-store-dd778",
-    storageBucket: "comic-store-dd778.firebasestorage.app",
-    messagingSenderId: "637507935915",
-    appId: "1:637507935915:web:bd8197d5772cd5f2d121ee"
-};
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 

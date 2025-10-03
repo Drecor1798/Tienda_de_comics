@@ -1,23 +1,58 @@
-.cadProducto{
-    background-color: aqua;
-    border-radius: 10px;
-    width: 20rem;
-    margin: 1rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.cadProducto img{
-    width: 300px;
-    object-fit: contain;
+.comic-card {
+  font-family: 'Comic Neue', cursive;
+  width: 18rem;
+  margin: 1rem;
+  border: 4px solid #000;
+  border-radius: 12px;
+  background-color: #fff9dc;
+  box-shadow: 8px 8px 0px #000;
+  transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
-.cadProducto button{
-    background-color: rgb(74, 70,70);
-    color: #fafafa;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    border: none;
-    padding: 10px 20px;
+.comic-card:hover {
+  transform: scale(1.03);
+}
+
+.comic-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 4px solid #000;
+}
+
+.comic-card-body {
+  padding: 16px;
+}
+
+.comic-card-title {
+  color: #d10000;
+  font-size: 1.4em;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px #000;
+}
+
+.comic-card-text {
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.comic-card-button {
+  display: inline-block;
+  text-align: center;
+  background-color: #00c3ff;
+  color: #000;
+  font-weight: bold;
+  padding: 10px 16px;
+  text-decoration: none;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-family: 'Comic Neue', cursive;
+  box-shadow: 4px 4px 0px #000;
+  transition: background-color 0.2s ease;
+}
+
+.comic-card-button:hover {
+  background-color: #82e9ff;
 }

@@ -2,7 +2,7 @@ import "./NavBar.css"
 import CartWidger from '../CartWitger/CartWidger'
 import { Link } from "react-router-dom"
 
-// Si está en public/image/
+
 const ImgLogo = "image/Diseño sin título (1).png"
 
 const NavBar = () => {

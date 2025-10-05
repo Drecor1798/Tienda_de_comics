@@ -1,37 +1,36 @@
 import { useEffect, useState } from 'react';
-import { getUnProducto } from '../../Service/Config'; // Asegúrate de que la ruta sea correcta
+import { getUnProducto } from '../../Service/Config'; 
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
   const [producto, setProducto] = useState(null);
-  const [loading, setLoading] = useState(true); // Nuevo estado para indicar carga
-  const [error, setError] = useState(null); // Nuevo estado para manejar errores
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const { idItem } = useParams();
 
   useEffect(() => {
-    setLoading(true); // Inicia la carga
-    setError(null);    // Limpia cualquier error previo
-    setProducto(null); // Limpia el producto anterior al cargar uno nuevo
+    setLoading(true); 
+    setError(null);    
+    setProducto(null); 
 
     getUnProducto(idItem)
       .then((respuesta) => {
-        setProducto(respuesta); // 'respuesta' será null si el producto no existe
+        setProducto(respuesta); 
       })
       .catch((err) => {
-        console.error("Error al cargar el producto:", err); // Log más detallado
+        console.error("Error al cargar el producto:", err); 
         setError("No se pudo cargar el detalle del producto. Por favor, inténtalo de nuevo más tarde.");
       })
       .finally(() => {
-        setLoading(false); // Finaliza la carga, ya sea con éxito o error
+        setLoading(false); 
       });
-  }, [idItem]); // Dependencia del efecto en idItem
+  }, [idItem]); 
 
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "20px" }}>
         <h2>Cargando detalle del producto...</h2>
-        {/* Aquí podrías añadir un spinner o un indicador visual de carga */}
       </div>
     );
   }
@@ -44,7 +43,7 @@ const ItemDetailContainer = () => {
     );
   }
 
-  // Si no está cargando, no hay error, pero 'producto' es null, significa que no se encontró.
+
   if (!producto) {
     return (
       <div style={{ textAlign: "center", padding: "20px" }}>
@@ -53,7 +52,6 @@ const ItemDetailContainer = () => {
     );
   }
 
-  // Si llegamos aquí, significa que 'producto' tiene datos y podemos mostrar el detalle.
   return (
     <div>
       <ItemDetail {...producto} />

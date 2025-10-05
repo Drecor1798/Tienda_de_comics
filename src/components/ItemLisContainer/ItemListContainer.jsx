@@ -1,39 +1,37 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
-// Importamos directamente las funciones de tu archivo de configuración de Firebase
-import { getProductos, getProductosPorCategoria } from "../../Service/Config"; // Ajusta la ruta si es necesario
 
+import { getProductos, getProductosPorCategoria } from "../../Service/Config"; 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
-  const [loading, setLoading] = useState(true); // Nuevo estado para indicar carga
-  const [error, setError] = useState(null); // Nuevo estado para manejar errores
-  const { IdCategoria } = useParams();
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
+  const { idCategoria } = useParams();
 
   useEffect(() => {
-    setLoading(true); // Inicia la carga
-    setError(null);    // Limpia cualquier error previo
+    setLoading(true); 
+    setError(null);    
 
-    const funcionProductos = IdCategoria ? getProductosPorCategoria : getProductos;
+    const funcionProductos = idCategoria ? getProductosPorCategoria : getProductos;
 
-    funcionProductos(IdCategoria)
+    funcionProductos(idCategoria)
       .then(res => {
         setProductos(res);
       })
       .catch(err => {
-        console.error("Error al cargar productos:", err); // Log más detallado
+        console.error("Error al cargar productos:", err); 
         setError("No se pudieron cargar los productos. Por favor, inténtalo de nuevo más tarde."); // Mensaje para el usuario
       })
       .finally(() => {
-        setLoading(false); // Finaliza la carga, ya sea con éxito o error
+        setLoading(false); 
       });
-  }, [IdCategoria]); // Dependencia del efecto en IdCategoria
+  }, [idCategoria]); 
 
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "20px" }}>
         <h2>Cargando productos...</h2>
-        {/* Aquí podrías añadir un spinner o un indicador visual de carga */}
       </div>
     );
   }
@@ -46,7 +44,6 @@ const ItemListContainer = () => {
     );
   }
 
-  // Si no hay productos después de cargar (y sin error), podrías mostrar un mensaje.
   if (!loading && !error && productos.length === 0) {
     return (
         <div style={{ textAlign: "center", padding: "20px" }}>

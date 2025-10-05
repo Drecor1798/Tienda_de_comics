@@ -30,7 +30,7 @@ const ItemDetail = ({ id, nombre, precio, descripcion, stock }) => {
                 className="d-block w-100 comic-img"
                 alt={`${nombre} imagen ${num}`}
                 onError={(e) => {
-                  e.target.src = '/image/placeholder.png'; // Fallback en caso de error
+                  e.target.src = '/image/placeholder.png'; 
                   e.target.alt = 'Imagen no disponible';
                 }}
               />

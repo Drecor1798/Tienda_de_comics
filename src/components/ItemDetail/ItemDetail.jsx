@@ -10,9 +10,11 @@ const ItemDetail = ({ id, nombre, precio, descripcion, stock }) => {
 
   const manejadorCantidad = (cantidad) => {
     setAgregarCantidad(cantidad);
-    const Item = { id, nombre, precio };
-    agregarAlCarrito(Item, cantidad);
+    const item = { id, nombre, precio };
+    agregarAlCarrito(item, cantidad);
   };
+
+  const imageBasePath = `/image/imagenes/${nombre}`;
 
   return (
     <div className="item-detail-comic">
@@ -21,15 +23,19 @@ const ItemDetail = ({ id, nombre, precio, descripcion, stock }) => {
 
       <div id="carouselExample" className="carousel slide comic-carousel" data-bs-ride="carousel">
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src={`/imagenes/${nombre}/1.png`} className="d-block w-100 comic-img" alt={`${nombre} imagen 1`} />
-          </div>
-          <div className="carousel-item">
-            <img src={`/imagenes/${nombre}/3.png`} className="d-block w-100 comic-img" alt={`${nombre} imagen 3`} />
-          </div>
-          <div className="carousel-item">
-            <img src={`/imagenes/${nombre}/4.png`} className="d-block w-100 comic-img" alt={`${nombre} imagen 4`} />
-          </div>
+          {[1, 3, 4].map((num, index) => (
+            <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={num}>
+              <img
+                src={`${imageBasePath}/${num}.png`}
+                className="d-block w-100 comic-img"
+                alt={`${nombre} imagen ${num}`}
+                onError={(e) => {
+                  e.target.src = '/image/placeholder.png'; // Fallback en caso de error
+                  e.target.alt = 'Imagen no disponible';
+                }}
+              />
+            </div>
+          ))}
         </div>
 
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -43,10 +49,12 @@ const ItemDetail = ({ id, nombre, precio, descripcion, stock }) => {
         </button>
       </div>
 
-      <p className="comic-description">{descripcion ? descripcion : "Descripción no disponible."}</p>
+      <p className="comic-description">{descripcion || "Descripción no disponible."}</p>
 
       {agregarCantidad > 0 ? (
-        <Link to="/cart" className="comic-button comic-finish-btn">Terminar Compra</Link>
+        <Link to="/cart" className="comic-button comic-finish-btn">
+          Terminar Compra
+        </Link>
       ) : (
         <ItemCount inicial={1} stock={stock} funcionAgregar={manejadorCantidad} />
       )}
@@ -55,5 +63,3 @@ const ItemDetail = ({ id, nombre, precio, descripcion, stock }) => {
 };
 
 export default ItemDetail;
-
-

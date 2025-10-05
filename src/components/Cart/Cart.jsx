@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CarritoContext } from "../../Context/CarritoContext";
 import { Link } from "react-router-dom";
-import { getProductos } from "../../Asycmocks";
 import { CartItem } from "../CartItem/CartItem";
 
 import "./Cart.css";

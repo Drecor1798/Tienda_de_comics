@@ -9,7 +9,7 @@ import { Checkout } from './components/Checkout/Checkout'
 
 
 const App = () => {
-  const imgEntrada = "/public/image/Logo.png"
+  const imgEntrada = "image/Logo.png"
   return (
     <>
     <BrowserRouter>

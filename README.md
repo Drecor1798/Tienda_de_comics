@@ -16,3 +16,6 @@ Este es un ecomerce basico que se utiliza para el curso de React JS. La aplicaci
 - Ver el carrito de compras
 - Realizar una orden de compra
 
+## Dominio de sitio
+
+https://tienda-de-comics-36dg.vercel.app/
